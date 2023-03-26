@@ -9,18 +9,18 @@ python test.py <arquivo-lab> <pasta-teste>
 Ambos são opcionais, caso indentifique a pasta de teste, o programa considerara ela a pasta ```tests``` no mesmo diretorio do arquivo do lab, e caso não defina o arquivo de lab, ele solicitara que insiera
 ### Exemplo
 ```bash
-python test.py ~/Unicamp/MC102/lab02/lab02.py
+python test.py ~/Unicamp/testador-lab/exemplo/lab00.py
 ```
 
 ```bash
-python test.py ~/Unicamp/MC102/lab02/lab02.py  ~/Unicamp/MC102/testsLabs/lab02
+python test.py ~/Unicamp/testador-lab/exemplo/lab00.py ~/Unicamp/testador-lab/exemplo/testes00
 ```
 Exemplos seguintes apenas funciona caso seja executado na mesma pasta do lab e dos testes 
 ```bash
-python ~/scripts/test.py lab02.py
+python ~/Unicamp/testador-lab/test.py lab00.py
 ```
 ```bash
-python ~/scripts/test.py lab02.py testes
+python ~/Unicamp/testador-lab/test.py lab00.py testes00
 ```
 ## Nota
 O script foi testado apenas num linux, não garanto funcionar em outros SO.
