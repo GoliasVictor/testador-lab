@@ -4,7 +4,7 @@ Esse é um script simples, a partir do arquivo do lab, e os arquivos de input e 
 ## Como executar
 Para executar, este é o template
 ```bash
-python test.py <arquivo-lab> <pasta-teste> 
+nome_do_script.py test.py caminho_para_pasta_de_testes
 ```
 Ambos são opcionais, caso indentifique a pasta de teste, o programa considerara ela a pasta ```tests``` no mesmo diretorio do arquivo do lab, e caso não defina o arquivo de lab, ele solicitara que insiera
 ### Exemplo
@@ -22,5 +22,9 @@ python ~/Unicamp/testador-lab/test.py lab00.py
 ```bash
 python ~/Unicamp/testador-lab/test.py lab00.py testes00
 ```
-## Nota
-O script foi testado apenas num linux, não garanto funcionar em outros SO.
+
+
+## Notas
+
+- O script foi testado apenas num linux, não garanto funcionar em outros SO.
+- Existe a pasta ```testes```, que já são os testes que o professor disponibiliza, que foram adicionados aqui, a cada novo teste que o professor disponibilizar. Então, caso você execute o script e não definir uma pasta de teste, nem ter a pasta ```tests```, o script ira procura na propria pasta a pasta com mesmo nome do seu lab na pasta ```testes```. E os testes são os testes da turma W de MC102 do 1º semestre de 2023. 
