@@ -1,0 +1,42 @@
+{
+	"name": "Local: lab00",
+	"url": "/home/jvsb/Unicamp/MC102/testador-lab/exemplo/lab00.py",
+	"tests": [
+		{
+			"id": 0,
+			"input": "18 \n1",
+			"output": "Olá Eu sou o Testinho, me diga sua idade\nAgora me diga, Você já é adulto?\n(1) para sim\n(2) para não\nVocê está certo, você é adulto e tem 18 anos\n"
+		},
+		{
+			"id": 1,
+			"input": "18 \n2",
+			"output": "Olá Eu sou o Testinho, me diga sua idade\nAgora me diga, Você já é adulto?\n(1) para sim\n(2) para não\nNão minta, você tem 18 anos, maiores 18 já são adultos\n"
+		},
+		{
+			"id": 2,
+			"input": "16\n1",
+			"output": "Olá Eu sou o Testinho, me diga sua idade\nAgora me diga, Você já é adulto?\n(1) para sim\n(2) para não\nNão minta, você é menor de idade ainda, você tem apenas 16 anos\n"
+		},
+		{
+			"id": 3,
+			"input": "16\n2",
+			"output": "Olá Eu sou o Testinho, me diga sua idade\nAgora me diga, Você já é adulto?\n(1) para sim\n(2) para não\nIsso ai, você tem 16, você é menor de idade, epoca de sonhar\n"
+		},
+		{
+			"id": 4,
+			"input": "5\n1",
+			"output": "Olá Eu sou o Testinho, me diga sua idade\nAgora me diga, Você já é adulto?\n(1) para sim\n(2) para não\nNão minta, você é menor de idade ainda, você tem apenas 5 anos \n"
+		},
+		{
+			"id": 5,
+			"input": "1\n2",
+			"output": "Olá Eu sou o Testinho, me diga sua idade\nAgora me diga, Você já é adulto?\n(1) para sim\n(2) para não\nIsso ai, você tem 1, você é menor de idade, epoca de sonhar"
+		}
+	],
+	"interactive": false,
+	"memoryLimit": 1024,
+	"timeLimit": 3000,
+	"srcPath": "/home/jvsb/Unicamp/MC102/testador-lab/exemplo/lab00.py",
+	"group": "local",
+	"local": true
+}

@@ -3,6 +3,8 @@ from os.path import join, isfile, splitext, basename, exists
 import sys
 from difflib import Differ 
 import difflib
+import hashlib
+import json
 
 COLOR_FAIL = '\033[91m'
 COLOR_OKGREEN = '\033[92m'
@@ -39,6 +41,7 @@ if(not os.path.isabs(program_file)):
     program_file = os.path.abspath(program_file)
 
 lab_dir = os.path.dirname(program_file)
+lab_name = splitext(basename(program_file))[0]
 
 if len(sys.argv) > 2: 
     tests_dir =  sys.argv[2]
@@ -49,43 +52,60 @@ else:
     tests_dir = join(lab_dir,"tests")
     if(not exists(tests_dir)):
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        lab_name = splitext(basename(program_file))[0]
         tests_dir = join(script_dir, "testes", lab_name)
         if(not exists(tests_dir)):
             print("Pasta de teste não encontrada")
-            
+hash = hashlib.md5(program_file.encode()).hexdigest();
+cph_filename = f'.{os.path.basename(program_file)}_{hash}.prob'
+cph_dir = join(lab_dir,".cph")
+cph_path = join(cph_dir,cph_filename)
 print("Arquivo do programa:", program_file)
 print("Pasta de teste:",tests_dir )
+print("Caminho CPH",  cph_path)
 
-
-actual_out_dir = join(tests_dir, "actual")
-if(not exists(actual_out_dir)):
-    os.mkdir(actual_out_dir)
-
-
-files = [ join(tests_dir,f) for f in os.listdir(tests_dir) if isfile(join(tests_dir, f))]
-files.sort()
-in_files = [ f for f in files if f.endswith("in") ]
-for in_file in in_files:
-    test_name = splitext(basename(in_file))[0]
-    out_actual_file = join(actual_out_dir, test_name+".out")
-    out_expected_file = join(tests_dir, test_name+".out")
-
-    os.system(f'python {program_file} < {in_file} > {out_actual_file}')
-    if exists(out_expected_file):
-        with open(out_actual_file, 'r') as actual:
-            with open(out_expected_file, 'r') as expected:
-                str_actual = actual.read()
-                str_expected = expected.read()
-                differ = Differ()
-                if(str_actual == str_expected):
-                    print(f'{COLOR_OKGREEN}Teste {test_name}: Sucesso{COLOR_END}', )
-                else:
-                    print(f'{COLOR_FAIL}Teste {test_name}: Falha{COLOR_END}', )
-                    print(diff_strings(str_expected,str_actual))
-                    # O seguinte codigo mostra de forma dividida ao inves de colorida a diferença
-                    # sys.stdout.writelines(list(differ.compare(str_expected.splitlines(keepends=True),str_actual.splitlines(keepends=True)))) 
+if not exists(cph_dir):
+   os.mkdir(cph_dir)
 
 
 
+print("hash", )
 
+
+
+def get_cph_tests():
+	tests = []
+	files = [ join(tests_dir,f) for f in os.listdir(tests_dir) if isfile(join(tests_dir, f))]
+	files.sort()
+	in_files = [ f for f in files if f.endswith("in") ]
+	for i, in_file in enumerate(in_files):
+		test_name = splitext(basename(in_file))[0]
+		out_file = join(tests_dir, test_name+".out")
+		with open(in_file, 'r') as inp:
+			with open(out_file, 'r') as out:
+				str_input = inp.read()
+				str_output = out.read()
+				tests.append({
+					"id": i,
+					"input": str_input,
+					"output": str_output
+				})
+	return tests
+
+str_cph_content = json.dumps({
+	"name": "Local: "+lab_name,
+	"url": program_file,
+	"tests": get_cph_tests(),
+	"interactive": False,
+	"memoryLimit": 1024,
+	"timeLimit": 3000,
+	"srcPath": program_file,
+	"group": "local",
+	"local": True
+})
+
+
+
+
+
+with open(cph_path, 'w') as f:
+   f.write(str_cph_content)

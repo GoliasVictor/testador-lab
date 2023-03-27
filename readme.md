@@ -23,6 +23,8 @@ python ~/Unicamp/testador-lab/test.py lab00.py
 python ~/Unicamp/testador-lab/test.py lab00.py testes00
 ```
 
+## Teste To CPH
+Foi recomendado em sala de aula a extensão do VS code [Competitive Programming Helper (cph)](https://marketplace.visualstudio.com/items?itemName=DivyanshuAgrawal.competitive-programming-helper), porém um problema é que é preciso adicionar manualmente cada um dos testes, então foi feito um segundo script ```test-to-cph.py```, que ele converte os testes do professor, no arquivo usado pelo CPH para teste.
 
 ## Notas
 
